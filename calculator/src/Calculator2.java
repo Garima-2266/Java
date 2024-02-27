@@ -1,118 +1,133 @@
-import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import javax.swing.*;
-
-public class Calculator2 extends JFrame implements ActionListener {
-    JLabel l1 , l2, l3;
-    JTextField t1, t2;
-    JButton b1, b2, b3, b4, b5;
-    Container c;
-
-    public Calculator2() {
-        setTitle("Calculator");
-        setSize(400, 400);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        c = this.getContentPane();
-        c.setLayout(null);
-
-        l1 = new JLabel("First number:");
-        l1.setBounds(20, 50, 80, 30);
-        c.add(l1);
-
-        t1 = new JTextField();
-        t1.setBounds(100, 50, 80, 30);
-        c.add(t1);
-
-        l2 = new JLabel("Second number:");
-        l2.setBounds(20, 90, 100, 30);
-        c.add(l2);
-
-        t2 = new JTextField();
-        t2.setBounds(120, 90, 80, 30);
-        c.add(t2);
-
-        b1 = new JButton("Add");
-        b1.setBounds(5, 150, 80, 30);
-        c.add(b1);
-        b1.addActionListener(this);
-
-        
-
-        b2 = new JButton("Sub");
-        b2.setBounds(90, 150, 90, 30);
-        c.add(b2);
-        b2.addActionListener(this);
-
-//        l4 = new JLabel();
-//        l4.setBounds(20, 230, 200, 30);
-//        c.add(l4);
-
-        b3 = new JButton("Mul");
-        b3.setBounds(185, 150, 90, 30);
-        c.add(b3);
-        b3.addActionListener(this);
-
-//        l5 = new JLabel();
-//        l5.setBounds(20, 260, 200, 30);
-//        c.add(l5);
-
-        b4 = new JButton("Div");
-        b4.setBounds(280, 150, 90, 30);
-        c.add(b4);
-        b4.addActionListener(this);
-
-//        l6 = new JLabel();
-//        l6.setBounds(20, 290, 200, 30);
-//        c.add(l6);
-//        
-        b5 = new JButton("Reset");
-        b5.setBounds(150, 180, 80, 30);
-        c.add(b5);
-        b5.addActionListener(this);
-
-        l3 = new JLabel();
-        l3.setBounds(20, 200, 200, 30);
-        c.add(l3);
-        setVisible(true); 
+import java.awt.*;
+class calculator extends JFrame implements ActionListener {
+    static JFrame f;
+    static JTextField l;
+    String s0, s1, s2;
+    calculator()
+    {
+        s0 = s1 = s2 = "";
     }
+    public static void main(String args[])
+    {
+        f = new JFrame("calculator");
 
-    public void actionPerformed(ActionEvent e) {
-       try{
-        int a = Integer.parseInt(t1.getText());
-        int b = Integer.parseInt(t2.getText());
+        calculator c = new calculator();
 
-        if (e.getSource() == b1) {
-            int result = a + b;
-            l3.setText("Sum = " + result);
-        } if (e.getSource() == b2) {
-            int result = a - b;
-            l3.setText("Subtraction = " + result);
-        } if (e.getSource() == b3) {
-            int result = a * b;
-            l3.setText("Multiplication = " + result);
-        }  if (e.getSource() == b4) {
-//            if (b = 0) {
-                double result = (double) a / b;
-                l3.setText("Division = " + result);
-            } 
-             if(e.getSource()==b5){
-               t1.setText(""); 
-               t2.setText("");
-               l3.setText("");
-            }
-         }
-             catch(NumberFormatException e1)
-                     {
-                     l3.setText("Input integer only");
-                     }
-       catch(ArithmeticException e2){
-           l3.setText("cannot divide by Zero");
-//           e2.getMessage();
-       }
+        l = new JTextField(16);
+
+        l.setEditable(false);
+        JButton b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, ba, bs, bd, bm, be, beq, beq1;
+
+        b0 = new JButton("0");
+        b1 = new JButton("1");
+        b2 = new JButton("2");
+        b3 = new JButton("3");
+        b4 = new JButton("4");
+        b5 = new JButton("5");
+        b6 = new JButton("6");
+        b7 = new JButton("7");
+        b8 = new JButton("8");
+        b9 = new JButton("9");
+
+        beq1 = new JButton("=");
+
+        ba = new JButton("+");
+        bs = new JButton("-");
+        bd = new JButton("/");
+        bm = new JButton("*");
+        beq = new JButton("C");
+
+        be = new JButton(".");
+        JPanel p = new JPanel();
+        bm.addActionListener(c);
+        bd.addActionListener(c);
+        bs.addActionListener(c);
+        ba.addActionListener(c);
+        b9.addActionListener(c);
+        b8.addActionListener(c);
+        b7.addActionListener(c);
+        b6.addActionListener(c);
+        b5.addActionListener(c);
+        b4.addActionListener(c);
+        b3.addActionListener(c);
+        b2.addActionListener(c);
+        b1.addActionListener(c);
+        b0.addActionListener(c);
+        be.addActionListener(c);
+        beq.addActionListener(c);
+        beq1.addActionListener(c);
+
+        p.add(l);
+        p.add(ba);
+        p.add(b1);
+        p.add(b2);
+        p.add(b3);
+        p.add(bs);
+        p.add(b4);
+        p.add(b5);
+        p.add(b6);
+        p.add(bm);
+        p.add(b7);
+        p.add(b8);
+        p.add(b9);
+        p.add(bd);
+        p.add(be);
+        p.add(b0);
+        p.add(beq);
+        p.add(beq1);
+        f.add(p);
+        f.setSize(200, 220);
+        f.show();
+    }
+    public void actionPerformed(ActionEvent e)
+    {
+        String s = e.getActionCommand();
+        if ((s.charAt(0) >= '0' && s.charAt(0) <= '9') || s.charAt(0) == '.') {
+            if (!s1.equals(""))
+                s2 = s2 + s;
+            else
+                s0 = s0 + s;
+            l.setText(s0 + s1 + s2);
         }
-    public static void main(String[] args) {
-         new Calculator2();
+        else if (s.charAt(0) == 'C') {
+            s0 = s1 = s2 = "";
+            l.setText(s0 + s1 + s2);
+        }
+        else if (s.charAt(0) == '=') {
+            double te;
+            if (s1.equals("+"))
+                te = (Double.parseDouble(s0) + Double.parseDouble(s2));
+            else if (s1.equals("-"))
+                te = (Double.parseDouble(s0) - Double.parseDouble(s2));
+            else if (s1.equals("/"))
+                te = (Double.parseDouble(s0) / Double.parseDouble(s2));
+            else
+                te = (Double.parseDouble(s0) * Double.parseDouble(s2));
+            l.setText(s0 + s1 + s2 + "=" + te);
+            s0 = Double.toString(te);
+            s1 = s2 = "";
+        }
+        else {
+            if (s1.equals("") || s2.equals(""))
+                s1 = s;
+            else {
+                double te;
+
+                if (s1.equals("+"))
+                    te = (Double.parseDouble(s0) + Double.parseDouble(s2));
+                else if (s1.equals("-"))
+                    te = (Double.parseDouble(s0) - Double.parseDouble(s2));
+                else if (s1.equals("/"))
+                    te = (Double.parseDouble(s0) / Double.parseDouble(s2));
+                else
+                    te = (Double.parseDouble(s0) * Double.parseDouble(s2));
+                s0 = Double.toString(te);
+                s1 = s;
+                s2 = "";
+            }
+            l.setText(s0 + s1 + s2);
+        }
     }
 }
